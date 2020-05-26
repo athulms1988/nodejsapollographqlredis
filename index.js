@@ -2,6 +2,70 @@ const { ApolloServer, gql } = require('apollo-server');
 const fs = require('fs');
 const data = JSON.parse(fs.readFileSync('data.json', {encoding:'utf8', flag:'r'}));
 const typeDefs = gql`
+  type StationAddress {
+    addressLine1: String
+    addressLine2: String
+    city: String
+    state: String
+    postalCode: String
+    countryCode: String
+  }
+  type OpeningHours {
+    Monday: [OpeningTime]
+    Tuesday: [OpeningTime]
+    Wednesday: [OpeningTime]
+    Thursday: [OpeningTime]
+    Friday: [OpeningTime]
+    Saturday: [OpeningTime]
+    Sunday: [OpeningTime]
+  }
+  type OpeningTime {
+    from: String
+    to: String
+  }
+  type Station {
+    id: ID!
+    supplierId: Int
+    name: String
+    address: StationAddress
+    phoneNumber: String
+    fax: String
+    latitude: String
+    longitude: String
+    timeZone: String
+    generalInformation: String
+    openingHours: OpeningHours
+    isInAirport: String
+    isInTerminal: String
+    iataCode: String
+    status: String
+    stationType: String
+    stationDetail: String
+  }
+  type ExtrasAvailable {
+    available: Boolean
+  }
+  type Supplier {
+    id: ID!
+    name: String
+    logo: String
+    countryCode: String
+    extra: ExtrasAvailable
+  }
+  type Car {
+    id: ID!
+    acriss: String
+    make: String
+    model: String
+    doors: Int
+    seats: Int
+    luggage: Int
+    fuelType: String
+    image: String
+    isAirConditioning: Boolean
+    transmission: String
+    carGroup: String
+  }
   type Amount {
     total: Float
     daily: Float
@@ -32,7 +96,7 @@ const typeDefs = gql`
     pickUp: String
     dropOff: String
   }
-  type PolicyID {
+  type PolicyItem {
     id: ID!
     code: String
     description: String
@@ -40,6 +104,7 @@ const typeDefs = gql`
     mandatory: Boolean
     inclusive: Boolean
     exclusive: Boolean
+    feature: Boolean
     supportedCountries: [String]
   }
   type Bundles {
@@ -66,15 +131,25 @@ const typeDefs = gql`
     fees: [Fees]
     supplierCurrency: String
     deeplink: String
+    isDeductibleCDWStandardIncluded: Boolean
+    isDeductibleCDWPremiumIncluded: Boolean
   }
   type Query {
     products: [Product]
+    cars: [Car]
+    suppliers: [Supplier]
+    stations: [Station]
+    policyItems: [PolicyItem]
   }
 `;
 
 const resolvers = {
   Query: {
-    products: () => data.products
+    products: () => data.products,
+    cars: () => data.cars,
+    suppliers: () => data.suppliers,
+    stations: () => data.stations,
+    policyItems: () => data.policyItems
   },
 };
 
