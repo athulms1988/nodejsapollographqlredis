@@ -135,7 +135,7 @@ const typeDefs = gql`
     isDeductibleCDWPremiumIncluded: Boolean
   }
   type Query {
-    products: [Product]
+    products(pageNumber: Int, perPage: Int): [Product]
     cars: [Car]
     suppliers: [Supplier]
     stations: [Station]
@@ -145,7 +145,13 @@ const typeDefs = gql`
 
 const resolvers = {
   Query: {
-    products: () => data.products,
+    products: (_, { pageNumber = 1, perPage}) => {
+      if(perPage) {
+        return data.products.slice((pageNumber - 1) * perPage, pageNumber * perPage)
+      } else {
+        return data.products;
+      }
+    },
     cars: () => data.cars,
     suppliers: () => data.suppliers,
     stations: () => data.stations,
