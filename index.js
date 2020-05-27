@@ -101,18 +101,50 @@ const typeDefs = gql`
     code: String
     description: String
     classObjectBillingTerms: classObjectBillingTerms
+    classObjectTP: classObjectBillingTerms
+    classObjectCDW: classObjectBillingTerms
+    classObjectMileage: classObjectBillingTerms
+    classObjectFuelFees: classObjectBillingTerms
+    classObjectYoungDriverFees: classObjectBillingTerms
+    classObjectAirportTax: classObjectBillingTerms
+    classObjectThirdPartyLiabilityModel: classObjectBillingTerms
+    classObjectCarRegFees: classObjectBillingTerms
+    classObjectVAT: classObjectBillingTerms
+    classObjectAdditionalDriverFees: classObjectBillingTerms
+    classObjectPersonalAccidentInsurance: classObjectBillingTerms
+    classObjectPdfContent: classObjectBillingTerms
+    classObjectOneWayFees: classObjectBillingTerms
+    classObjectRoadTaxFees: classObjectBillingTerms
+    classObjectOutOfHourFees: classObjectBillingTerms
     mandatory: Boolean
     inclusive: Boolean
     exclusive: Boolean
     feature: Boolean
     supportedCountries: [String]
   }
-  type Bundles {
+  type Bundle {
     id: Int
     description: String
     name: String
     policyUrl: String
-
+    supportedCountries: [String]
+  }
+  type Extra {
+    id: ID!
+    code: String
+    description: String
+  }
+  type Meta {
+    brand: String
+    partner: String
+    pointOfSale: String
+    timestamp: String
+    deeplink_url: String
+    pointOfSaleCurrencyCode: String
+    tripDuration: Int
+    merchantInventory: Boolean
+    search_resp_timestamp: String
+    search_req_timestamp: String
   }
   type Product {
     productKey: ID!
@@ -125,7 +157,7 @@ const typeDefs = gql`
     stationId: StationID
     type: String
     rateType: String
-    creditCardRequired: String
+    creditCardRequired: Boolean
     price: Price
     priceBreakdown: [PriceBreakdown]
     fees: [Fees]
@@ -134,12 +166,29 @@ const typeDefs = gql`
     isDeductibleCDWStandardIncluded: Boolean
     isDeductibleCDWPremiumIncluded: Boolean
   }
+  type Location {
+    id: ID!
+    isDropOff: Boolean
+    isPickUp: Boolean
+    value: String
+  }
+  type LocationDistance {
+    stationId: ID!
+    unit: String
+    value: Float
+  }
   type Query {
     products(pageNumber: Int, perPage: Int): [Product]
     cars: [Car]
     suppliers: [Supplier]
     stations: [Station]
     policyItems: [PolicyItem]
+    productGroups: [[String]]
+    bundles: [Bundle]
+    extras: [Extra]
+    meta: Meta
+    locations: [Location]
+    locationDistance: [LocationDistance]
   }
 `;
 
@@ -155,7 +204,13 @@ const resolvers = {
     cars: () => data.cars,
     suppliers: () => data.suppliers,
     stations: () => data.stations,
-    policyItems: () => data.policyItems
+    policyItems: () => data.policyItems,
+    productGroups: () => data.productGroups,
+    bundles: () => data.bundles,
+    extras: () => data.extras,
+    meta: () => data.meta,
+    locations: () => data.locations,
+    locationDistance:() => data.locationDistance
   },
 };
 

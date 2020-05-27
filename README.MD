@@ -10,7 +10,8 @@ The app will start running on http://localhost:4000
 
 # Supported GraphQL Schema
 
-`{
+```json
+{
   products {
       productKey
       availability
@@ -56,6 +57,8 @@ The app will start running on http://localhost:4000
       }
       supplierCurrency
       deeplink
+      isDeductibleCDWStandardIncluded
+      isDeductibleCDWPremiumIncluded
   }
   cars {
     id
@@ -145,10 +148,40 @@ The app will start running on http://localhost:4000
     exclusive
     supportedCountries
   }
-}`
-
-# Postman Request & Response
-
-![Postman Request](request.png)
-
-![Postman Request](response.png)
+  productGroups
+  bundles {
+      id
+      name
+      description
+      policyUrl
+      supportedCountries
+  }
+  extras {
+    id
+    code
+    description
+  }
+  meta {
+      brand
+      partner
+      pointOfSale
+      timestamp
+      deeplink_url
+      pointOfSaleCurrencyCode
+      tripDuration
+      merchantInventory
+      search_resp_timestamp
+      search_req_timestamp
+  }
+  locations {
+      id
+      isDropOff
+      isPickUp
+      value
+  }
+  locationDistance {
+      stationId
+      unit
+      value
+  }
+}
