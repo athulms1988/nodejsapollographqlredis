@@ -93,8 +93,8 @@ const typeDefs = gql`
     text: String
   }
   type StationID {
-    pickUp: String
-    dropOff: String
+    pickUp: Int
+    dropOff: Int
   }
   type PolicyItem {
     id: ID!
@@ -151,7 +151,7 @@ const typeDefs = gql`
     availability: String
     carId: Int
     policyIds: [String]
-    bundledIds: [String]
+    bundledIds: [Int]
     extrasIds: [String]
     supplierId: Int
     stationId: StationID
