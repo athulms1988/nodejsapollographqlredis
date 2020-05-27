@@ -10,7 +10,7 @@ The app will start running on http://localhost:4000
 
 # Supported GraphQL Schema
 
-```json
+`
 {
   products {
       productKey
@@ -99,6 +99,7 @@ The app will start running on http://localhost:4000
     latitude
     longitude
     timeZone
+    stationDetail
     generalInformation
     openingHours {
         Monday {
@@ -184,4 +185,11 @@ The app will start running on http://localhost:4000
       unit
       value
   }
-}
+}`
+
+# Postman Request & Response
+
+![Postman Request](request.png)
+
+![Postman Request](response.png)
+
