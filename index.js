@@ -24,7 +24,7 @@ const typeDefs = gql`
     to: String
   }
   type Station {
-    id: ID!
+    id: Int!
     supplierId: Int
     name: String
     address: StationAddress
@@ -46,14 +46,14 @@ const typeDefs = gql`
     available: Boolean
   }
   type Supplier {
-    id: ID!
+    id: Int!
     name: String
     logo: String
     countryCode: String
     extra: ExtrasAvailable
   }
   type Car {
-    id: ID!
+    id: Int!
     acriss: String
     make: String
     model: String
@@ -167,13 +167,13 @@ const typeDefs = gql`
     isDeductibleCDWPremiumIncluded: Boolean
   }
   type Location {
-    id: ID!
+    id: Int!
     isDropOff: Boolean
     isPickUp: Boolean
     value: String
   }
   type LocationDistance {
-    stationId: ID!
+    stationId: Int!
     unit: String
     value: Float
   }
