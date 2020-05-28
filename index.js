@@ -1,6 +1,9 @@
-const { ApolloServer, gql } = require('apollo-server');
+const express = require('express');
+const { ApolloServer, gql } = require('apollo-server-express');
 const fs = require('fs');
 const data = JSON.parse(fs.readFileSync('data.json', {encoding:'utf8', flag:'r'}));
+const app = express();
+const PORT = 4000;
 const typeDefs = gql`
   type StationAddress {
     addressLine1: String
@@ -215,8 +218,8 @@ const resolvers = {
 };
 
 const server = new ApolloServer({ typeDefs, resolvers });
+server.applyMiddleware({ app });
 
-// The `listen` method launches a web server.
-server.listen().then(({ url }) => {
-  console.log(`🚀  Server ready at ${url}`);
-});
+app.listen({ port: PORT }, () =>
+console.log(`🚀 Server ready at http://localhost:4000${server.graphqlPath}`)
+)
