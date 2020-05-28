@@ -1,6 +1,7 @@
 const { gql } = require('apollo-server');
 
-const typeDefs = gql`type StationAddress {
+const typeDefs = gql`
+  type StationAddress {
     addressLine1: String
     addressLine2: String
     city: String
@@ -96,6 +97,7 @@ const typeDefs = gql`type StationAddress {
   }
   interface PolicyItem {
     id: ID!
+    name: String
     code: String
     description: String
     mandatory: Boolean
@@ -224,6 +226,7 @@ const typeDefs = gql`type StationAddress {
   }
   type classObjectTP implements PolicyItem {
     id: ID!
+    name: String
     code: String
     description: String
     mandatory: Boolean
@@ -235,6 +238,7 @@ const typeDefs = gql`type StationAddress {
   }
   type classObjectCDW implements PolicyItem {
     id: ID!
+    name: String
     code: String
     description: String
     mandatory: Boolean
@@ -246,6 +250,7 @@ const typeDefs = gql`type StationAddress {
   }
   type classObjectMileage implements PolicyItem {
     id: ID!
+    name: String
     code: String
     description: String
     mandatory: Boolean
@@ -257,6 +262,7 @@ const typeDefs = gql`type StationAddress {
   }
   type classObjectFuelFees implements PolicyItem {
     id: ID!
+    name: String
     code: String
     description: String
     mandatory: Boolean
@@ -268,6 +274,7 @@ const typeDefs = gql`type StationAddress {
   }
   type classObjectYoungDriverFees implements PolicyItem {
     id: ID!
+    name: String
     code: String
     description: String
     mandatory: Boolean
@@ -279,6 +286,7 @@ const typeDefs = gql`type StationAddress {
   }
   type classObjectAirportTax implements PolicyItem {
     id: ID!
+    name: String
     code: String
     description: String
     mandatory: Boolean
@@ -290,6 +298,7 @@ const typeDefs = gql`type StationAddress {
   }
   type classObjectThirdPartyLiabilityModel implements PolicyItem {
     id: ID!
+    name: String
     code: String
     description: String
     mandatory: Boolean
@@ -301,6 +310,7 @@ const typeDefs = gql`type StationAddress {
   }
   type classObjectCarRegFees implements PolicyItem {
     id: ID!
+    name: String
     code: String
     description: String
     mandatory: Boolean
@@ -312,6 +322,7 @@ const typeDefs = gql`type StationAddress {
   }
   type classObjectVAT implements PolicyItem {
     id: ID!
+    name: String
     code: String
     description: String
     mandatory: Boolean
@@ -323,6 +334,7 @@ const typeDefs = gql`type StationAddress {
   }
   type classObjectAdditionalDriverFees implements PolicyItem {
     id: ID!
+    name: String
     code: String
     description: String
     mandatory: Boolean
@@ -334,6 +346,7 @@ const typeDefs = gql`type StationAddress {
   }
   type classObjectPersonalAccidentInsurance implements PolicyItem {
     id: ID!
+    name: String
     code: String
     description: String
     mandatory: Boolean
@@ -345,6 +358,7 @@ const typeDefs = gql`type StationAddress {
   }
   type classObjectPdfContent implements PolicyItem {
     id: ID!
+    name: String
     code: String
     description: String
     mandatory: Boolean
@@ -356,6 +370,7 @@ const typeDefs = gql`type StationAddress {
   }
   type classObjectOneWayFees implements PolicyItem {
     id: ID!
+    name: String
     code: String
     description: String
     mandatory: Boolean
@@ -367,6 +382,7 @@ const typeDefs = gql`type StationAddress {
   }
   type classObjectRoadTaxFees implements PolicyItem {
     id: ID!
+    name: String
     code: String
     description: String
     mandatory: Boolean
@@ -378,6 +394,7 @@ const typeDefs = gql`type StationAddress {
   }
   type classObjectOutOfHourFees implements PolicyItem {
     id: ID!
+    name: String
     code: String
     description: String
     mandatory: Boolean
@@ -389,6 +406,7 @@ const typeDefs = gql`type StationAddress {
   }
   type classObjectWinterChainsForTires implements PolicyItem {
     id: ID!
+    name: String
     code: String
     description: String
     mandatory: Boolean
@@ -400,6 +418,7 @@ const typeDefs = gql`type StationAddress {
   }
   type classObjectDepositAtPickup implements PolicyItem {
     id: ID!
+    name: String
     code: String
     description: String
     mandatory: Boolean
@@ -411,6 +430,7 @@ const typeDefs = gql`type StationAddress {
   }
   type classObjectCleaningFeesFees implements PolicyItem {
     id: ID!
+    name: String
     code: String
     description: String
     mandatory: Boolean
@@ -422,6 +442,7 @@ const typeDefs = gql`type StationAddress {
   }
   type classObjectCreditCard implements PolicyItem {
     id: ID!
+    name: String
     code: String
     description: String
     mandatory: Boolean
@@ -433,6 +454,7 @@ const typeDefs = gql`type StationAddress {
   }
   type classObjectOneWayIncludedFees implements PolicyItem {
     id: ID!
+    name: String
     code: String
     description: String
     mandatory: Boolean
@@ -444,6 +466,7 @@ const typeDefs = gql`type StationAddress {
   }
   type classObjectAirportTaxFull implements PolicyItem {
     id: ID!
+    name: String
     code: String
     description: String
     mandatory: Boolean
@@ -455,6 +478,7 @@ const typeDefs = gql`type StationAddress {
   }
   type classObjectEcoTax implements PolicyItem {
     id: ID!
+    name: String
     code: String
     description: String
     mandatory: Boolean
@@ -466,6 +490,7 @@ const typeDefs = gql`type StationAddress {
   }
   type classObjectDocuments implements PolicyItem {
     id: ID!
+    name: String
     code: String
     description: String
     mandatory: Boolean
@@ -477,6 +502,7 @@ const typeDefs = gql`type StationAddress {
   }
   type classObjectSecurityDeposit implements PolicyItem {
     id: ID!
+    name: String
     code: String
     description: String
     mandatory: Boolean
@@ -488,6 +514,7 @@ const typeDefs = gql`type StationAddress {
   }
   type classObjectEnvironmentalFees implements PolicyItem {
     id: ID!
+    name: String
     code: String
     description: String
     mandatory: Boolean
@@ -499,6 +526,7 @@ const typeDefs = gql`type StationAddress {
   }
   type classObjectCrossBorderFees implements PolicyItem {
     id: ID!
+    name: String
     code: String
     description: String
     mandatory: Boolean
@@ -510,6 +538,7 @@ const typeDefs = gql`type StationAddress {
   }
   type classObjectTrainStationTax implements PolicyItem {
     id: ID!
+    name: String
     code: String
     description: String
     mandatory: Boolean
@@ -521,6 +550,7 @@ const typeDefs = gql`type StationAddress {
   }
   type classObjectWinterTireFees implements PolicyItem {
     id: ID!
+    name: String
     code: String
     description: String
     mandatory: Boolean
@@ -528,6 +558,17 @@ const typeDefs = gql`type StationAddress {
     exclusive: Boolean
     feature: Boolean
     classObjectWinterTireFees: ClassObjectAdditionalDriverFees
+    supportedCountries: [String]
+  }
+  type classObjectPolicyItem implements PolicyItem {
+    id: ID!
+    name: String
+    code: String
+    description: String
+    mandatory: Boolean
+    inclusive: Boolean
+    exclusive: Boolean
+    feature: Boolean
     supportedCountries: [String]
   }
   type Bundle {
