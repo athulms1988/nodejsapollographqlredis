@@ -96,30 +96,440 @@ const typeDefs = gql`
     pickUp: Int
     dropOff: Int
   }
-  type PolicyItem {
+  interface PolicyItem {
     id: ID!
     code: String
     description: String
-    classObjectBillingTerms: classObjectBillingTerms
-    classObjectTP: classObjectBillingTerms
-    classObjectCDW: classObjectBillingTerms
-    classObjectMileage: classObjectBillingTerms
-    classObjectFuelFees: classObjectBillingTerms
-    classObjectYoungDriverFees: classObjectBillingTerms
-    classObjectAirportTax: classObjectBillingTerms
-    classObjectThirdPartyLiabilityModel: classObjectBillingTerms
-    classObjectCarRegFees: classObjectBillingTerms
-    classObjectVAT: classObjectBillingTerms
-    classObjectAdditionalDriverFees: classObjectBillingTerms
-    classObjectPersonalAccidentInsurance: classObjectBillingTerms
-    classObjectPdfContent: classObjectBillingTerms
-    classObjectOneWayFees: classObjectBillingTerms
-    classObjectRoadTaxFees: classObjectBillingTerms
-    classObjectOutOfHourFees: classObjectBillingTerms
     mandatory: Boolean
     inclusive: Boolean
     exclusive: Boolean
     feature: Boolean
+    supportedCountries: [String]
+  }
+  type SupplierAmount {
+    supplierAmount: Float
+    supplierCurrency: String
+  }
+  type AllowancePerPeriod {
+    total: String
+    unit: String
+  }
+  type AdditionalMileage {
+    period: String
+    price: SupplierAmount
+  }
+  type YoungDriverAge {
+    minimum: Int
+    maximum: Int
+  }
+  type YoungDriverMinMaX {
+    price: YoungDriverMaximumPrice
+    age: YoungDriverAge
+  }
+  type YoungDriverMaximumPrice {
+    maximum: SupplierAmount
+  }
+  type PropertyBodyDamageInvoice {
+    isUnlimited: Boolean
+    amount: SupplierAmount
+  }
+  type AdditionalDriverFeesminMax{
+    price: YoungDriverMaximumPrice
+  }
+  type DepositAtPickupMinMaxPrice {
+    minimum: SupplierAmount
+    maximum: SupplierAmount
+  }
+  type DepositAtPickupPrice {
+    price: DepositAtPickupMinMaxPrice
+  }
+  type ClassObjectTP {
+    hasDeductible: Boolean
+    deductibleAmount: SupplierAmount
+  }
+  type ClassObjectMileage {
+    isUnlimited: Boolean
+		period: String
+		allowancePerPeriod: AllowancePerPeriod
+		additionalMileage: AdditionalMileage
+  }
+  type ClassObjectFuelFees {
+    stateAtPickup: String
+    stateAtDropOff: String
+    remarks: String
+  }
+  type ClassObjectYoungDriverFees {
+    period: String
+    pricePerPeriod: SupplierAmount
+    minMax: YoungDriverMinMaX
+  }
+  type ClassObjectAirportTax {
+    period: String
+  }
+  type ClassObjectThirdPartyLiabilityModel {
+    propertyDamageInvoice: PropertyBodyDamageInvoice
+    bodyDamageInvoice: PropertyBodyDamageInvoice
+  }
+  type ClassObjectCarRegFees {
+    period: String
+    pricePerPeriod: SupplierAmount
+  }
+  type ClassObjectVAT {
+    calculationType: String
+    percentage: Float
+  }
+  type ClassObjectAdditionalDriverFees {
+    period: String
+    pricePerPeriod: SupplierAmount
+    minMax: AdditionalDriverFeesminMax
+  }
+  type ClassObjectPdfContent {
+    content: String
+  }
+  type ClassObjectDepositAtPickup {
+    minMax: DepositAtPickupPrice
+  }
+  type ClassObjectOutOfHourFees {
+    calculationType: String
+    invoice: SupplierAmount
+  }
+  type ClassObjectCreditCard {
+    creditCard: String
+  }
+  type ClassObjectDocuments {
+    documents: String
+  }
+  type SupplierAmountWithAuthorisation {
+    supplierAmount: Float
+    supplierCurrency: String
+    requiresAuthorisation: Boolean
+  }
+  type countriesAllowedWithChargeItem {
+    countryCode: String
+    pricePerUnit: SupplierAmountWithAuthorisation
+  }
+  type ClassObjectCrossBorderFees {
+    countriesAllowedWithCharge: [countriesAllowedWithChargeItem]
+  }
+  type TrainStationTaxInvoiceAmount {
+    posAmount: Float
+    supplierAmount: Float
+    posCurrency: String
+    supplierCurrency: String
+  }
+  type TrainStationTaxInvoice {
+    invoice: TrainStationTaxInvoiceAmount
+  }
+  type ClassObjectTrainStationTax {
+    calculationType: String
+    tax: TrainStationTaxInvoice
+  }
+  type classObjectTP implements PolicyItem {
+    id: ID!
+    code: String
+    description: String
+    mandatory: Boolean
+    inclusive: Boolean
+    exclusive: Boolean
+    feature: Boolean
+    classObjectTP: ClassObjectTP
+    supportedCountries: [String]
+  }
+  type classObjectCDW implements PolicyItem {
+    id: ID!
+    code: String
+    description: String
+    mandatory: Boolean
+    inclusive: Boolean
+    exclusive: Boolean
+    feature: Boolean
+    classObjectCDW: ClassObjectTP
+    supportedCountries: [String]
+  }
+  type classObjectMileage implements PolicyItem {
+    id: ID!
+    code: String
+    description: String
+    mandatory: Boolean
+    inclusive: Boolean
+    exclusive: Boolean
+    feature: Boolean
+    classObjectMileage: ClassObjectMileage
+    supportedCountries: [String]
+  }
+  type classObjectFuelFees implements PolicyItem {
+    id: ID!
+    code: String
+    description: String
+    mandatory: Boolean
+    inclusive: Boolean
+    exclusive: Boolean
+    feature: Boolean
+    classObjectFuelFees: ClassObjectFuelFees
+    supportedCountries: [String]
+  }
+  type classObjectYoungDriverFees implements PolicyItem {
+    id: ID!
+    code: String
+    description: String
+    mandatory: Boolean
+    inclusive: Boolean
+    exclusive: Boolean
+    feature: Boolean
+    classObjectYoungDriverFees: ClassObjectYoungDriverFees
+    supportedCountries: [String]
+  }
+  type classObjectAirportTax implements PolicyItem {
+    id: ID!
+    code: String
+    description: String
+    mandatory: Boolean
+    inclusive: Boolean
+    exclusive: Boolean
+    feature: Boolean
+    classObjectAirportTax: ClassObjectAirportTax
+    supportedCountries: [String]
+  }
+  type classObjectThirdPartyLiabilityModel implements PolicyItem {
+    id: ID!
+    code: String
+    description: String
+    mandatory: Boolean
+    inclusive: Boolean
+    exclusive: Boolean
+    feature: Boolean
+    classObjectThirdPartyLiabilityModel: ClassObjectThirdPartyLiabilityModel
+    supportedCountries: [String]
+  }
+  type classObjectCarRegFees implements PolicyItem {
+    id: ID!
+    code: String
+    description: String
+    mandatory: Boolean
+    inclusive: Boolean
+    exclusive: Boolean
+    feature: Boolean
+    classObjectCarRegFees: ClassObjectCarRegFees
+    supportedCountries: [String]
+  }
+  type classObjectVAT implements PolicyItem {
+    id: ID!
+    code: String
+    description: String
+    mandatory: Boolean
+    inclusive: Boolean
+    exclusive: Boolean
+    feature: Boolean
+    classObjectVAT: ClassObjectVAT
+    supportedCountries: [String]
+  }
+  type classObjectAdditionalDriverFees implements PolicyItem {
+    id: ID!
+    code: String
+    description: String
+    mandatory: Boolean
+    inclusive: Boolean
+    exclusive: Boolean
+    feature: Boolean
+    classObjectAdditionalDriverFees: ClassObjectAdditionalDriverFees
+    supportedCountries: [String]
+  }
+  type classObjectPersonalAccidentInsurance implements PolicyItem {
+    id: ID!
+    code: String
+    description: String
+    mandatory: Boolean
+    inclusive: Boolean
+    exclusive: Boolean
+    feature: Boolean
+    classObjectPersonalAccidentInsurance: ClassObjectAdditionalDriverFees
+    supportedCountries: [String]
+  }
+  type classObjectPdfContent implements PolicyItem {
+    id: ID!
+    code: String
+    description: String
+    mandatory: Boolean
+    inclusive: Boolean
+    exclusive: Boolean
+    feature: Boolean
+    classObjectPdfContent: ClassObjectPdfContent
+    supportedCountries: [String]
+  }
+  type classObjectOneWayFees implements PolicyItem {
+    id: ID!
+    code: String
+    description: String
+    mandatory: Boolean
+    inclusive: Boolean
+    exclusive: Boolean
+    feature: Boolean
+    classObjectOneWayFees: ClassObjectAirportTax
+    supportedCountries: [String]
+  }
+  type classObjectRoadTaxFees implements PolicyItem {
+    id: ID!
+    code: String
+    description: String
+    mandatory: Boolean
+    inclusive: Boolean
+    exclusive: Boolean
+    feature: Boolean
+    classObjectRoadTaxFees: ClassObjectCarRegFees
+    supportedCountries: [String]
+  }
+  type classObjectOutOfHourFees implements PolicyItem {
+    id: ID!
+    code: String
+    description: String
+    mandatory: Boolean
+    inclusive: Boolean
+    exclusive: Boolean
+    feature: Boolean
+    classObjectOutOfHourFees: ClassObjectOutOfHourFees
+    supportedCountries: [String]
+  }
+  type classObjectWinterChainsForTires implements PolicyItem {
+    id: ID!
+    code: String
+    description: String
+    mandatory: Boolean
+    inclusive: Boolean
+    exclusive: Boolean
+    feature: Boolean
+    classObjectWinterChainsForTires: ClassObjectAdditionalDriverFees
+    supportedCountries: [String]
+  }
+  type classObjectDepositAtPickup implements PolicyItem {
+    id: ID!
+    code: String
+    description: String
+    mandatory: Boolean
+    inclusive: Boolean
+    exclusive: Boolean
+    feature: Boolean
+    classObjectDepositAtPickup: ClassObjectDepositAtPickup
+    supportedCountries: [String]
+  }
+  type classObjectCleaningFeesFees implements PolicyItem {
+    id: ID!
+    code: String
+    description: String
+    mandatory: Boolean
+    inclusive: Boolean
+    exclusive: Boolean
+    feature: Boolean
+    classObjectCleaningFeesFees: ClassObjectCarRegFees
+    supportedCountries: [String]
+  }
+  type classObjectCreditCard implements PolicyItem {
+    id: ID!
+    code: String
+    description: String
+    mandatory: Boolean
+    inclusive: Boolean
+    exclusive: Boolean
+    feature: Boolean
+    classObjectCreditCard: ClassObjectCreditCard
+    supportedCountries: [String]
+  }
+  type classObjectOneWayIncludedFees implements PolicyItem {
+    id: ID!
+    code: String
+    description: String
+    mandatory: Boolean
+    inclusive: Boolean
+    exclusive: Boolean
+    feature: Boolean
+    classObjectOneWayIncludedFees: ClassObjectAirportTax
+    supportedCountries: [String]
+  }
+  type classObjectAirportTaxFull implements PolicyItem {
+    id: ID!
+    code: String
+    description: String
+    mandatory: Boolean
+    inclusive: Boolean
+    exclusive: Boolean
+    feature: Boolean
+    classObjectAirportTaxFull: ClassObjectCarRegFees
+    supportedCountries: [String]
+  }
+  type classObjectEcoTax implements PolicyItem {
+    id: ID!
+    code: String
+    description: String
+    mandatory: Boolean
+    inclusive: Boolean
+    exclusive: Boolean
+    feature: Boolean
+    classObjectEcoTax: ClassObjectCarRegFees
+    supportedCountries: [String]
+  }
+  type classObjectDocuments implements PolicyItem {
+    id: ID!
+    code: String
+    description: String
+    mandatory: Boolean
+    inclusive: Boolean
+    exclusive: Boolean
+    feature: Boolean
+    classObjectDocuments: ClassObjectDocuments
+    supportedCountries: [String]
+  }
+  type classObjectSecurityDeposit implements PolicyItem {
+    id: ID!
+    code: String
+    description: String
+    mandatory: Boolean
+    inclusive: Boolean
+    exclusive: Boolean
+    feature: Boolean
+    classObjectSecurityDeposit: ClassObjectOutOfHourFees
+    supportedCountries: [String]
+  }
+  type classObjectEnvironmentalFees implements PolicyItem {
+    id: ID!
+    code: String
+    description: String
+    mandatory: Boolean
+    inclusive: Boolean
+    exclusive: Boolean
+    feature: Boolean
+    classObjectEnvironmentalFees: ClassObjectAirportTax 
+    supportedCountries: [String]
+  }
+  type classObjectCrossBorderFees implements PolicyItem {
+    id: ID!
+    code: String
+    description: String
+    mandatory: Boolean
+    inclusive: Boolean
+    exclusive: Boolean
+    feature: Boolean
+    classObjectCrossBorderFees: ClassObjectCrossBorderFees
+    supportedCountries: [String]
+  }
+  type classObjectTrainStationTax implements PolicyItem {
+    id: ID!
+    code: String
+    description: String
+    mandatory: Boolean
+    inclusive: Boolean
+    exclusive: Boolean
+    feature: Boolean
+    classObjectTrainStationTax: ClassObjectTrainStationTax
+    supportedCountries: [String]
+  }
+  type classObjectWinterTireFees implements PolicyItem {
+    id: ID!
+    code: String
+    description: String
+    mandatory: Boolean
+    inclusive: Boolean
+    exclusive: Boolean
+    feature: Boolean
+    classObjectWinterTireFees: ClassObjectAdditionalDriverFees
     supportedCountries: [String]
   }
   type Bundle {
