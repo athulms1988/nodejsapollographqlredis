@@ -98,6 +98,7 @@ const typeDefs = gql`
   }
   interface PolicyItem {
     id: ID!
+    name: String
     code: String
     description: String
     mandatory: Boolean
@@ -226,6 +227,7 @@ const typeDefs = gql`
   }
   type classObjectTP implements PolicyItem {
     id: ID!
+    name: String
     code: String
     description: String
     mandatory: Boolean
@@ -237,6 +239,7 @@ const typeDefs = gql`
   }
   type classObjectCDW implements PolicyItem {
     id: ID!
+    name: String
     code: String
     description: String
     mandatory: Boolean
@@ -248,6 +251,7 @@ const typeDefs = gql`
   }
   type classObjectMileage implements PolicyItem {
     id: ID!
+    name: String
     code: String
     description: String
     mandatory: Boolean
@@ -259,6 +263,7 @@ const typeDefs = gql`
   }
   type classObjectFuelFees implements PolicyItem {
     id: ID!
+    name: String
     code: String
     description: String
     mandatory: Boolean
@@ -270,6 +275,7 @@ const typeDefs = gql`
   }
   type classObjectYoungDriverFees implements PolicyItem {
     id: ID!
+    name: String
     code: String
     description: String
     mandatory: Boolean
@@ -281,6 +287,7 @@ const typeDefs = gql`
   }
   type classObjectAirportTax implements PolicyItem {
     id: ID!
+    name: String
     code: String
     description: String
     mandatory: Boolean
@@ -292,6 +299,7 @@ const typeDefs = gql`
   }
   type classObjectThirdPartyLiabilityModel implements PolicyItem {
     id: ID!
+    name: String
     code: String
     description: String
     mandatory: Boolean
@@ -303,6 +311,7 @@ const typeDefs = gql`
   }
   type classObjectCarRegFees implements PolicyItem {
     id: ID!
+    name: String
     code: String
     description: String
     mandatory: Boolean
@@ -314,6 +323,7 @@ const typeDefs = gql`
   }
   type classObjectVAT implements PolicyItem {
     id: ID!
+    name: String
     code: String
     description: String
     mandatory: Boolean
@@ -325,6 +335,7 @@ const typeDefs = gql`
   }
   type classObjectAdditionalDriverFees implements PolicyItem {
     id: ID!
+    name: String
     code: String
     description: String
     mandatory: Boolean
@@ -336,6 +347,7 @@ const typeDefs = gql`
   }
   type classObjectPersonalAccidentInsurance implements PolicyItem {
     id: ID!
+    name: String
     code: String
     description: String
     mandatory: Boolean
@@ -347,6 +359,7 @@ const typeDefs = gql`
   }
   type classObjectPdfContent implements PolicyItem {
     id: ID!
+    name: String
     code: String
     description: String
     mandatory: Boolean
@@ -358,6 +371,7 @@ const typeDefs = gql`
   }
   type classObjectOneWayFees implements PolicyItem {
     id: ID!
+    name: String
     code: String
     description: String
     mandatory: Boolean
@@ -369,6 +383,7 @@ const typeDefs = gql`
   }
   type classObjectRoadTaxFees implements PolicyItem {
     id: ID!
+    name: String
     code: String
     description: String
     mandatory: Boolean
@@ -380,6 +395,7 @@ const typeDefs = gql`
   }
   type classObjectOutOfHourFees implements PolicyItem {
     id: ID!
+    name: String
     code: String
     description: String
     mandatory: Boolean
@@ -391,6 +407,7 @@ const typeDefs = gql`
   }
   type classObjectWinterChainsForTires implements PolicyItem {
     id: ID!
+    name: String
     code: String
     description: String
     mandatory: Boolean
@@ -402,6 +419,7 @@ const typeDefs = gql`
   }
   type classObjectDepositAtPickup implements PolicyItem {
     id: ID!
+    name: String
     code: String
     description: String
     mandatory: Boolean
@@ -413,6 +431,7 @@ const typeDefs = gql`
   }
   type classObjectCleaningFeesFees implements PolicyItem {
     id: ID!
+    name: String
     code: String
     description: String
     mandatory: Boolean
@@ -424,6 +443,7 @@ const typeDefs = gql`
   }
   type classObjectCreditCard implements PolicyItem {
     id: ID!
+    name: String
     code: String
     description: String
     mandatory: Boolean
@@ -435,6 +455,7 @@ const typeDefs = gql`
   }
   type classObjectOneWayIncludedFees implements PolicyItem {
     id: ID!
+    name: String
     code: String
     description: String
     mandatory: Boolean
@@ -446,6 +467,7 @@ const typeDefs = gql`
   }
   type classObjectAirportTaxFull implements PolicyItem {
     id: ID!
+    name: String
     code: String
     description: String
     mandatory: Boolean
@@ -457,6 +479,7 @@ const typeDefs = gql`
   }
   type classObjectEcoTax implements PolicyItem {
     id: ID!
+    name: String
     code: String
     description: String
     mandatory: Boolean
@@ -468,6 +491,7 @@ const typeDefs = gql`
   }
   type classObjectDocuments implements PolicyItem {
     id: ID!
+    name: String
     code: String
     description: String
     mandatory: Boolean
@@ -479,6 +503,7 @@ const typeDefs = gql`
   }
   type classObjectSecurityDeposit implements PolicyItem {
     id: ID!
+    name: String
     code: String
     description: String
     mandatory: Boolean
@@ -490,6 +515,7 @@ const typeDefs = gql`
   }
   type classObjectEnvironmentalFees implements PolicyItem {
     id: ID!
+    name: String
     code: String
     description: String
     mandatory: Boolean
@@ -501,6 +527,7 @@ const typeDefs = gql`
   }
   type classObjectCrossBorderFees implements PolicyItem {
     id: ID!
+    name: String
     code: String
     description: String
     mandatory: Boolean
@@ -512,6 +539,7 @@ const typeDefs = gql`
   }
   type classObjectTrainStationTax implements PolicyItem {
     id: ID!
+    name: String
     code: String
     description: String
     mandatory: Boolean
@@ -523,6 +551,7 @@ const typeDefs = gql`
   }
   type classObjectWinterTireFees implements PolicyItem {
     id: ID!
+    name: String
     code: String
     description: String
     mandatory: Boolean
@@ -530,6 +559,17 @@ const typeDefs = gql`
     exclusive: Boolean
     feature: Boolean
     classObjectWinterTireFees: ClassObjectAdditionalDriverFees
+    supportedCountries: [String]
+  }
+  type classObjectPolicyItem implements PolicyItem {
+    id: ID!
+    name: String
+    code: String
+    description: String
+    mandatory: Boolean
+    inclusive: Boolean
+    exclusive: Boolean
+    feature: Boolean
     supportedCountries: [String]
   }
   type Bundle {
@@ -603,6 +643,96 @@ const typeDefs = gql`
 `;
 
 const resolvers = {
+  PolicyItem: {
+    __resolveType(policyItem, context, info){
+      if(policyItem.classObjectTP){
+        return 'classObjectTP';
+      }
+      else if(policyItem.classObjectCDW){
+        return 'classObjectCDW';
+      }
+      else if(policyItem.classObjectMileage){
+        return 'classObjectMileage';
+      }
+      else if(policyItem.classObjectFuelFees){
+        return 'classObjectFuelFees';
+      }
+      else if(policyItem.classObjectYoungDriverFees){
+        return 'classObjectYoungDriverFees';
+      }
+      else if(policyItem.classObjectAirportTax){
+        return 'classObjectAirportTax';
+      }
+      else if(policyItem.classObjectThirdPartyLiabilityModel){
+        return 'classObjectThirdPartyLiabilityModel';
+      }
+      else if(policyItem.classObjectCarRegFees){
+        return 'classObjectCarRegFees';
+      }
+      else if(policyItem.classObjectVAT){
+        return 'classObjectVAT';
+      }
+      else if(policyItem.classObjectAdditionalDriverFees){
+        return 'classObjectAdditionalDriverFees';
+      }
+      else if(policyItem.classObjectPersonalAccidentInsurance){
+        return 'classObjectPersonalAccidentInsurance';
+      }
+      else if(policyItem.classObjectPdfContent){
+        return 'classObjectPdfContent';
+      }
+      else if(policyItem.classObjectOneWayFees){
+        return 'classObjectOneWayFees';
+      }
+      else if(policyItem.classObjectRoadTaxFees){
+        return 'classObjectRoadTaxFees';
+      }
+      else if(policyItem.classObjectOutOfHourFees){
+        return 'classObjectOutOfHourFees';
+      }
+      else if(policyItem.classObjectWinterChainsForTires){
+        return 'classObjectWinterChainsForTires';
+      }
+      else if(policyItem.classObjectDepositAtPickup){
+        return 'classObjectDepositAtPickup';
+      }
+      else if(policyItem.classObjectCleaningFeesFees){
+        return 'classObjectCleaningFeesFees';
+      }
+      else if(policyItem.classObjectCreditCard){
+        return 'classObjectCreditCard';
+      }
+      else if(policyItem.classObjectOneWayIncludedFees){
+        return 'classObjectOneWayIncludedFees';
+      }
+      else if(policyItem.classObjectAirportTaxFull){
+        return 'classObjectAirportTaxFull';
+      }
+      else if(policyItem.classObjectEcoTax){
+        return 'classObjectEcoTax';
+      }
+      else if(policyItem.classObjectDocuments){
+        return 'classObjectDocuments';
+      }
+      else if(policyItem.classObjectSecurityDeposit){
+        return 'classObjectSecurityDeposit';
+      }
+      else if(policyItem.classObjectEnvironmentalFees){
+        return 'classObjectEnvironmentalFees';
+      }
+      else if(policyItem.classObjectCrossBorderFees){
+        return 'classObjectCrossBorderFees';
+      }
+      else if(policyItem.classObjectTrainStationTax){
+        return 'classObjectTrainStationTax';
+      }
+      else if(policyItem.classObjectWinterTireFees){
+        return 'classObjectWinterTireFees';
+      } else {
+        return 'classObjectPolicyItem';
+      }
+    },
+  },
   Query: {
     products: (_, { pageNumber = 1, perPage}) => {
       if(perPage) {
