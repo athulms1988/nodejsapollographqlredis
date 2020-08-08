@@ -27,7 +27,7 @@ jobs:
     - name: Elastic Beanstalk Deployment
       uses: kumarshivam12/Aws-ElasticBeanstalk@v1.4
       with:
-        EB-BUCKET-NAME: 
-        APPLICATION-NAME: 
-        EB-ENV-NAME: 
-        AWS-REGION: 
+        EB-BUCKET-NAME: elasticbeanstalk-ap-south-1-587262887072
+        APPLICATION-NAME: NodeServer
+        EB-ENV-NAME: Nodeserver-env
+        AWS-REGION: ap-south-1
