@@ -1,30 +1,26 @@
-# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
-# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
-
-name: Node.js CI
-
+name: Deploy master
 on:
   push:
-    branches: master
-  pull_request:
-    branches: master
-
+    branches:
+    - master
+    
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [12.x]
-
     steps:
+    
     - name: Checkout source code
       uses: actions/checkout@v1
-    - name: Elastic Beanstalk Deployment
-      uses: kumarshivam12/Aws-ElasticBeanstalk@v1.4
+
+    - name: Generate deployment package
+      run: zip -r deploy.zip . -x '*.git*'
+      
+    - name: Deploy to EB
+      uses: einaregilsson/beanstalk-deploy@v11
       with:
-        EB-BUCKET-NAME: elasticbeanstalk-ap-south-1-587262887072
-        APPLICATION-NAME: NodeServer
-        EB-ENV-NAME: Nodeserver-env
-        AWS-REGION: ap-south-1
+        aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        application_name: NodeServer
+        environment_name: Nodeserver-env
+        region: ap-south-1
+        deployment_package: deploy.zip
