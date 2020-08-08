@@ -8,7 +8,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    
+    - name: Get GitCommit Hash
+      id: vars
+      shell: bash
+      run: |
+        echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
     - name: Checkout source code
       uses: actions/checkout@v1
 
@@ -23,5 +27,5 @@ jobs:
         application_name: NodeServer
         environment_name: Nodeserver-env
         region: ap-south-1
-        version_label: $(git rev-parse --short "$GITHUB_SHA")
+        version_label: ${(git rev-parse --short "$GITHUB_SHA")}
         deployment_package: deploy.zip
