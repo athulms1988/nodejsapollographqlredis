@@ -22,5 +22,5 @@ jobs:
         application_name: NodeServer
         environment_name: Nodeserver-env
         region: ap-south-1
-        version_label: ${GITHUB_SHA}
+        version_label: ${{ github.sha }}
         deployment_package: deploy.zip
