@@ -141,8 +141,14 @@ The app will start running on http://localhost:4000
     id
     code
     description
-    classObjectBillingTerms {
-        text
+    ... on classObjectTP {
+      classObjectTP {
+        hasDeductible
+        deductibleAmount {
+            supplierAmount
+            supplierCurrency
+        }
+      }
     }
     mandatory
     inclusive
